@@ -14,11 +14,21 @@ class CreateLoansTable extends Migration
     public function up()
     {
         Schema::create('loans', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id')->unsigned();
             $table->timestamps();
-            $table->integer('user_id',100);
-            $table->integer('product_id',100);
-            $table->timestamp('returned_at');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+				  ->references('id')
+				  ->on('users')
+				  ->onDelete('restrict')
+				  ->onUpdate('restrict');
+			$table->integer('product_id')->unsigned();
+            $table->foreign('product_id')
+				  ->references('id')
+				  ->on('products')
+				  ->onDelete('restrict')
+				  ->onUpdate('restrict');
+		    $table->timestamp('returned_at')->nullable();
         });
     }
 
