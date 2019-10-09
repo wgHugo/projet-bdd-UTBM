@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -58,7 +60,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-       return User::all();
+       return User::where('id',$id);
      }
     /**
      * Show the form for editing the specified resource.
@@ -68,7 +70,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user= User::find($id);
+        return view('users.edit', compact('user'));
+
     }
 
     /**
@@ -80,7 +84,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required'
+        ]);
+
+        $user = User::find($id);
+        $user->name =  $request->get('name');
+        $user->email = $request->get('email');
+        $user->save();
+
+        return redirect('/user')->with('success', 'Utilisateur modifié!');
     }
 
     /**
@@ -91,6 +105,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if ($user != Auth::user()){
+            $user->delete();
+            return redirect('/user')->with('success', 'Utilisateur supprimé!');
+        }else{
+            return redirect('/user')->with('error', 'Vous utilisez ce compte');
+        }
+
     }
 }

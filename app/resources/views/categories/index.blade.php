@@ -13,28 +13,28 @@
         {{ session()->get('error') }}
     </div>
     @endif
-    <h1 class="display-3">Utilisateurs</h1>
-    <a href="{{ route('user.create')}}" class="btn btn-primary">Créer</a>
+    <h1 class="display-3">Catégories</h1>
+    <a href="{{ route('category.create')}}" class="btn btn-primary">Créer</a>
     <table class="table table-striped">
     <thead>
         <tr>
           <td>ID</td>
           <td>Nom</td>
-          <td>Email</td>
+          <td>Type</td>
           <td colspan = 2>Actions</td>
         </tr>
     </thead>
     <tbody>
-        @foreach($users as $utilisateur)
+        @foreach($categories as $category)
         <tr>
-            <td>{{$utilisateur->id}}</td>
-            <td>{{$utilisateur->name}}</td>
-            <td>{{$utilisateur->email}}</td>
+            <td>{{$category->id}}</td>
+            <td>{{$category->name}}</td>
+            <td>{{$category->type}}</td>
             <td>
-                <a href="{{ route('user.edit', $utilisateur->id)}}" class="btn btn-primary">Modifier</a>
+                <a href="{{ route('category.edit', $category->id)}}" class="btn btn-primary">Modifier</a>
             </td>
             <td>
-                <form action="{{ route('user.destroy', $utilisateur->id)}}" method="post">
+                <form action="{{ route('category.destroy', $category->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Supprimer</button>

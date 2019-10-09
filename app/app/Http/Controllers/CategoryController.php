@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-         return Category::where('id', $id);
+        $request->validate([
+            'name'=>'required',
+            'type'=>'required'
+        ]);
+
+        $category = new Category([
+            'name' => $request->get('name'),
+            'type' => $request->get('type')
+        ]);
+        $category->save();
+        return redirect('/category')->with('success', 'Catégorie ajoutée!');
     }
 
     /**
@@ -46,7 +57,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return Category::find($id);
     }
 
     /**
@@ -57,7 +68,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category= Category::find($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -69,7 +81,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+        'name'=>'required',
+        'type'=>'required'
+    ]);
+
+        $category = Category::find($id);
+        $category->name =  $request->get('name');
+        $category->type = $request->get('type');
+        $category->save();
+
+        return redirect('/category')->with('success', 'Catégorie modifiée!');
     }
 
     /**
@@ -80,6 +102,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect('/category')->with('success', 'Catégorie supprimée!');
     }
 }
