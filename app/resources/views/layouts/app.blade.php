@@ -32,8 +32,26 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item {{ Route::is('user.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('user.index')}}">Utilisateurs</a>
+                        </li>
+                        <li class="nav-item {{ Route::is('category.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('category.index')}}">Catégories</a>
+                        </li>
+                        <li class="nav-item {{ Route::is('product.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('product.index')}}">Produits</a>
+                        </li>
+                        <li class="nav-item {{ Route::is('loan.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('loan.index')}}">Réservations</a>
+                        </li>
+                        <li class="nav-item {{ Route::is('loan.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('loan.index')}}">Statistiques</a>
+                        </li>
+                        <!-- Search bar -->
+                        <li class="nav-item">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
