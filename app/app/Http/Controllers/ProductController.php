@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +16,10 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products.index', compact('products'));
+        $categories = Category::where('type', 1)->get();
+        $types = Category::where('type', 0)->get();
+        $tab = [$types, $categories, $products];
+        return view('products.index', compact('tab'));
     }
 
     /**
@@ -24,7 +29,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::where('type', 1)->get();
+        $types = Category::where('type', 0)->get();
+        $tab = [$types, $categories];
+        return view('products.create', compact('tab'));
     }
 
     /**
@@ -35,7 +43,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'author'=>'required',
+            'type_id'=>'required',
+            'category_id'=>'required'
+        ]);
+
+        $product = new Product([
+            'name' => $request->get('name'),
+            'author' => $request->get('author'),
+            'type_id' => $request->get('type_id'),
+            'category_id' => $request->get('category_id')
+        ]);
+        $product->save();
+        return redirect('/product')->with('success', 'Produit ajouté!');
+
     }
 
     /**
@@ -46,7 +69,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-      return Product::where('id', $id);
+      return Product::find($id);
 
     }
 
@@ -58,7 +81,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product= Product::find($id);
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -70,7 +94,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'author'=>'required',
+            'type_id'=>'required',
+            'category_id'=>'required'
+        ]);
+
+        $product = Product::find($id);
+        $product->name =  $request->get('name');
+        $product->author = $request->get('author');
+        $product->type_id = $request->get('type_id');
+        $product->category_id = $request->get('category_id');
+        $product->save();
+
+        return redirect('/product')->with('success', 'Produit modifié!');
+
     }
 
     /**
@@ -81,6 +120,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('/product')->with('success', 'Produit supprimé!');
+
     }
 }
