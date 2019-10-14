@@ -15,8 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+//        $users = User::all();
+//        return view('users.index', compact('users'));
+        $user = Auth::user();
+        return view('users.profil', compact('user'));
     }
 
     /**
@@ -62,6 +64,18 @@ class UserController extends Controller
     {
        return User::where('id',$id);
      }
+
+    /**
+     * Display user information.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profil()
+    {
+        $user = Auth::user();
+        return view('users.profil', compact('user'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
