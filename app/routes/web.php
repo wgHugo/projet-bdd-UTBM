@@ -11,7 +11,7 @@
 |
 */
 
-
+Route::get('user/profil', 'UserController@profil')->name('user.profil');
 Route::resource('user', 'UserController');
 
 Route::resource('loan', 'LoanController');
