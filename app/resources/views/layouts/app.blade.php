@@ -33,6 +33,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        @guest
+
+                        @else
                         <li class="nav-item {{ Route::is('user.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('user.index')}}">Utilisateurs</a>
                         </li>
@@ -52,6 +55,7 @@
                         <li class="nav-item">
                             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
                         </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -80,8 +84,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('user.profil')}}"> {{ __('Profil') }} </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POS
-                                    T" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>

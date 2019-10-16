@@ -47,7 +47,8 @@ class UserController extends Controller
                 $user = new User([
                     'name' => $request->get('name'),
                     'email' => $request->get('email'),
-                    'password' => $request->get('password')
+                    'password' => $request->get('password'),
+                    'admin' => 0
                 ]);
                 $user->save();
                 return redirect('/user')->with('success', 'Utlisateur ajouté!');
@@ -99,12 +100,17 @@ class UserController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'email'=>'required'
+            'email'=>'required',
         ]);
 
         $user = User::find($id);
         $user->name =  $request->get('name');
         $user->email = $request->get('email');
+        if ($request->get('admin')!= null){
+            $user->admin = $request->get('admin');
+        }else{
+            $user->admin = 0;
+        }
         $user->save();
 
         return redirect('/user')->with('success', 'Utilisateur modifié!');

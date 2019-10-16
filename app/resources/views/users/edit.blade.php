@@ -18,7 +18,6 @@
             @method('PATCH')
             @csrf
             <div class="form-group">
-
                 <label for="name">Nom:</label>
                 <input type="text" class="form-control" name="name" value={{ $user->name }} />
             </div>
@@ -26,6 +25,14 @@
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="text" class="form-control" name="email" value={{ $user->email }} />
+            </div>
+            <div class="form-group">
+                <label for="name">Admin:</label>
+                @if ($user->admin)
+                    <input type="checkbox" class="form-control" name="admin" checked value="1" />
+                @else
+                    <input type="checkbox" class="form-control" name="admin" value="1"/>
+                @endif
             </div>
             <button type="submit" class="btn btn-primary">Modifier</button>
         </form>

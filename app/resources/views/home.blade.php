@@ -11,7 +11,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    @if (Route::current()->getName() == 'home')
+                        <h3 class="panel-title">Bienvenue dans MediaTech</h3>
+                    @endif
                     @yield('main')
                 </div>
             </div>
