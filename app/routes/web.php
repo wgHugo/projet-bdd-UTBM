@@ -13,7 +13,7 @@
 
 Route::get('user/profil', 'UserController@profil')->name('user.profil');
 Route::resource('user', 'UserController');
-
+Route::get('loan/rendre{id}', 'LoanController@rendre')->name('loan.rendre');
 Route::resource('loan', 'LoanController');
 Route::resource('product', 'ProductController');
 Route::resource('category', 'CategoryController');

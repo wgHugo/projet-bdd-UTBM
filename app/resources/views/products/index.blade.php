@@ -14,22 +14,31 @@
     </div>
     @endif
     <h1 class="display-3">Produits</h1>
+    @if (Auth::user()->admin)
     <a href="{{ route('product.create')}}" class="btn btn-primary">Créer</a>
+    @endif
     <table class="table table-striped">
     <thead>
         <tr>
-          <td>ID</td>
+            @if (Auth::user()->admin)
+            <td>ID</td>
+            @endif
           <td>Nom</td>
           <td>Auteur</td>
           <td>Type</td>
           <td>Catégorie</td>
-          <td colspan = 2>Actions</td>
+            @if (Auth::user()->admin)
+            <td colspan = 2>Actions</td>
+            @endif
+            <td colspan = 2>Status</td>
         </tr>
     </thead>
     <tbody>
         @foreach($tab[2] as $product)
         <tr>
+            @if (Auth::user()->admin)
             <td>{{$product->id}}</td>
+            @endif
             <td>{{$product->name}}</td>
             <td>{{$product->author}}</td>
             @foreach($tab[0] as $type)
@@ -42,6 +51,7 @@
                      <td>{{$category->name}}</td>
                  @endif
             @endforeach
+            @if (Auth::user()->admin)
             <td>
                 <a href="{{ route('product.edit', $product->id)}}" class="btn btn-primary">Modifier</a>
             </td>
@@ -52,6 +62,16 @@
                   <button class="btn btn-danger" type="submit">Supprimer</button>
                 </form>
             </td>
+            @endif
+            @if(!$product->available)
+            <td>
+                <button class="btn btn-secondary">Indisponible</button>
+            </td>
+            @else
+            <td>
+                <button class="btn btn-success">Disponible</button>
+            </td>
+            @endif
         </tr>
         @endforeach
     </tbody>
