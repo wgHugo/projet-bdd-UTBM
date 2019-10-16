@@ -36,21 +36,24 @@
                         @guest
 
                         @else
+                        @if (Auth::user()->admin)
                         <li class="nav-item {{ Route::is('user.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('user.index')}}">Utilisateurs</a>
+                        </li>
+                        <li class="nav-item {{ Route::is('loan.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('loan.index')}}">Statistiques</a>
                         </li>
                         <li class="nav-item {{ Route::is('category.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('category.index')}}">Catégories</a>
                         </li>
+                        @endif
                         <li class="nav-item {{ Route::is('product.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('product.index')}}">Produits</a>
                         </li>
                         <li class="nav-item {{ Route::is('loan.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('loan.index')}}">Réservations</a>
                         </li>
-                        <li class="nav-item {{ Route::is('loan.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('loan.index')}}">Statistiques</a>
-                        </li>
+
                         <!-- Search bar -->
                         <li class="nav-item">
                             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
