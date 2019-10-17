@@ -41,7 +41,7 @@
                             <a class="nav-link" href="{{ route('user.index')}}">Utilisateurs</a>
                         </li>
                         <li class="nav-item {{ Route::is('loan.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('loan.index')}}">Statistiques</a>
+                            <a class="nav-link" href="{{ route('statistic.index')}}">Statistiques</a>
                         </li>
                         <li class="nav-item {{ Route::is('category.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('category.index')}}">Catégories</a>

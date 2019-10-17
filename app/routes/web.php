@@ -17,6 +17,7 @@ Route::resource('user', 'UserController');
 Route::resource('loan', 'LoanController');
 Route::resource('product', 'ProductController');
 Route::resource('category', 'CategoryController');
+Route::resource('statistic', 'StatisticController');
 
 Auth::routes();
 
