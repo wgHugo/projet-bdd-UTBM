@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
             $table->string('name',100);
             $table->string('author',100);
+            $table->longText('description')->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')
 				  ->references('id')

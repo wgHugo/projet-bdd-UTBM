@@ -74,6 +74,17 @@ class ProductController extends Controller
     }
 
     /**
+     * Display product information.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function card($id)
+    {
+        $product = Product::find($id);
+        return view('products.card', compact('product'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

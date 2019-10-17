@@ -37,7 +37,7 @@
         @foreach($tab[2] as $product)
         <tr>
             @if (Auth::user()->admin)
-            <td>{{$product->id}}</td>
+            <td><a href={{ route('product.card', $product->id)}}"> {{$product->id}} </a></td>
             @endif
             <td>{{$product->name}}</td>
             <td>{{$product->author}}</td>
@@ -79,3 +79,4 @@
 <div>
 </div>
 @endsection
+

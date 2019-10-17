@@ -13,9 +13,13 @@
 
 Route::get('user/profil', 'UserController@profil')->name('user.profil');
 Route::resource('user', 'UserController');
+
 Route::get('loan/rendre{id}', 'LoanController@rendre')->name('loan.rendre');
 Route::resource('loan', 'LoanController');
+
+Route::get('product/card{id}', 'ProductController@card')->name('product.card');
 Route::resource('product', 'ProductController');
+
 Route::resource('category', 'CategoryController');
 Route::resource('statistic', 'StatisticController');
 

@@ -40,7 +40,7 @@
                         <li class="nav-item {{ Route::is('user.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('user.index')}}">Utilisateurs</a>
                         </li>
-                        <li class="nav-item {{ Route::is('loan.index') ? 'active' : '' }}">
+                        <li class="nav-item {{ Route::is('statistic.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('statistic.index')}}">Statistiques</a>
                         </li>
                         <li class="nav-item {{ Route::is('category.index') ? 'active' : '' }}">
