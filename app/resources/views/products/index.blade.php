@@ -65,11 +65,11 @@
             @endif
             @if(!$product->available)
             <td>
-                <button class="btn btn-secondary">Indisponible</button>
+                <button class="btn btn-secondary" disabled>Indisponible</button>
             </td>
             @else
             <td>
-                <button class="btn btn-success">Disponible</button>
+                <button class="btn btn-success" disabled>Disponible</button>
             </td>
             @endif
         </tr>
