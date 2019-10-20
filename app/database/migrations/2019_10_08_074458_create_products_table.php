@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name',100);
             $table->string('author',100);
             $table->longText('description')->nullable();
+            $table->longText('url_img')->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')
 				  ->references('id')

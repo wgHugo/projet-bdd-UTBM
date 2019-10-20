@@ -17,12 +17,20 @@
       <form method="post" action="{{ route('product.store') }}">
           @csrf
           <div class="form-group">
-              <label for="first_name">Nom:</label>
+              <label for="name">Nom:</label>
               <input type="text" class="form-control" name="name"/>
           </div>
           <div class="form-group">
-              <label for="first_name">Auteur:</label>
+              <label for="author">Auteur:</label>
               <input type="text" class="form-control" name="author"/>
+          </div>
+          <div class="form-group">
+              <label for="description">Description:</label>
+              <input type="text" class="form-control" name="description"/>
+          </div>
+          <div class="form-group">
+              <label for="url_img">Image :</label>
+              <input type="text" class="form-control" name="url_img"/>
           </div>
 
           <div class="form-group">

@@ -46,6 +46,8 @@ class ProductController extends Controller
         $request->validate([
             'name'=>'required',
             'author'=>'required',
+            'description'=>'string',
+            'url_img'=>'string',
             'type_id'=>'required',
             'category_id'=>'required'
         ]);
@@ -53,6 +55,8 @@ class ProductController extends Controller
         $product = new Product([
             'name' => $request->get('name'),
             'author' => $request->get('author'),
+            'description' => $request->get('description'),
+            'url_img' => $request->get('url_img'),
             'type_id' => $request->get('type_id'),
             'category_id' => $request->get('category_id')
         ]);
