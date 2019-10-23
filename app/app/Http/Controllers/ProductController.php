@@ -78,6 +78,24 @@ class ProductController extends Controller
     }
 
     /**
+     * Display product corresponding to the search.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $q = $request->get('search' );
+        $products = Product::where('name','LIKE','%'.$q.'%')->orWhere('author','LIKE','%'.$q.'%')->get();
+        $categories = Category::where('type', 1)->get();
+        $types = Category::where('type', 0)->get();
+        $tab = [$types, $categories, $products];
+        if(count($products) > 0)
+            return view('search', compact('tab'));
+        else return view ('home')->withMessage('No Details found. Try to search again !');
+    }
+
+    /**
      * Display product information.
      *
      * @return \Illuminate\Http\Response

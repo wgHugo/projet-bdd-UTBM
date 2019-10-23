@@ -13,27 +13,24 @@
             {{ session()->get('error') }}
         </div>
         @endif
-        <h1 class="display-3">Produits</h1>
-        @if (Auth::user()->admin)
-        <a href="{{ route('product.create')}}" class="btn btn-primary">Créer</a>
-        @endif
+        <h1 class="display-3">Résultats recherche</h1>
         <table class="table table-striped">
-        <thead>
+            <thead>
             <tr>
                 @if (Auth::user()->admin)
                 <td>ID</td>
                 @endif
-              <td>Nom</td>
-              <td>Auteur</td>
-              <td>Type</td>
-              <td>Catégorie</td>
+                <td>Nom</td>
+                <td>Auteur</td>
+                <td>Type</td>
+                <td>Catégorie</td>
                 @if (Auth::user()->admin)
                 <td colspan = 2>Actions</td>
                 @endif
                 <td colspan = 2>Status</td>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @foreach($tab[2] as $product)
             <tr>
                 @if (Auth::user()->admin)
@@ -42,14 +39,14 @@
                 <td>{{$product->name}}</td>
                 <td>{{$product->author}}</td>
                 @foreach($tab[0] as $type)
-                    @if($type->id==$product->type_id)
-                        <td>{{$type->name}}</td>
-                    @endif
+                @if($type->id==$product->type_id)
+                <td>{{$type->name}}</td>
+                @endif
                 @endforeach
                 @foreach($tab[1] as $category)
-                     @if($category->id==$product->category_id)
-                         <td>{{$category->name}}</td>
-                     @endif
+                @if($category->id==$product->category_id)
+                <td>{{$category->name}}</td>
+                @endif
                 @endforeach
                 @if (Auth::user()->admin)
                 <td>
@@ -57,9 +54,9 @@
                 </td>
                 <td>
                     <form action="{{ route('product.destroy', $product->id)}}" method="post">
-                      @csrf
-                      @method('DELETE')
-                      <button class="btn btn-danger" type="submit">Supprimer</button>
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit">Supprimer</button>
                     </form>
                 </td>
                 @endif
@@ -74,9 +71,10 @@
                 @endif
             </tr>
             @endforeach
-        </tbody>
-      </table>
+            </tbody>
+        </table>
     </div>
 </div>
-@endsection
 
+
+@endsection

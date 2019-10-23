@@ -40,18 +40,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                    'name'=>'required',
-                    'email'=>'required'
-                ]);
+            'name'=>'required',
+            'email'=>'required'
+        ]);
+        $user = new User([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+            'admin' => 0
+        ]);
 
-                $user = new User([
-                    'name' => $request->get('name'),
-                    'email' => $request->get('email'),
-                    'password' => $request->get('password'),
-                    'admin' => 0
-                ]);
-                $user->save();
-                return redirect('/user')->with('success', 'Utlisateur ajouté!');
+        $user->save();
+        return redirect('/user')->with('success', 'Utlisateur ajouté!');
     }
 
     /**

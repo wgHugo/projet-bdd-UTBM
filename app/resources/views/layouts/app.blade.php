@@ -56,7 +56,17 @@
 
                         <!-- Search bar -->
                         <li class="nav-item">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
+<!--                            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">-->
+                            <form action="{{ route('product.search')}}" method="POST" role="search">
+                                {{ csrf_field() }}
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" placeholder="Recherche produit"> <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
                         </li>
                         @endguest
                     </ul>
