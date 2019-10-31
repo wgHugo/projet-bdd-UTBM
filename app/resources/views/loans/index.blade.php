@@ -13,7 +13,7 @@
             {{ session()->get('error') }}
         </div>
     @endif
-    <h1 class="display-3">Réservations</h1>
+    <h1 class="display-3">Emprunts</h1>
     @if (Auth::user()->admin)
         <a href="{{ route('loan.create')}}" class="btn btn-primary">Créer</a>
     @endif

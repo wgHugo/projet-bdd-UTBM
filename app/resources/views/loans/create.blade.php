@@ -3,7 +3,7 @@
 @section('main')
 <div class="row">
  <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-3">Ajouter une réservation</h1>
+    <h1 class="display-3">Ajouter un emprunt</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -32,7 +32,7 @@
                   @endforeach
               </select>
           </div>
-          <button type="submit" class="btn btn-primary">Ajouter une réservation</button>
+          <button type="submit" class="btn btn-primary">Ajouter un emprunt</button>
       </form>
   </div>
 </div>

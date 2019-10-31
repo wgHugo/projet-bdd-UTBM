@@ -51,7 +51,7 @@
                             <a class="nav-link" href="{{ route('product.index')}}">Produits</a>
                         </li>
                         <li class="nav-item {{ Route::is('loan.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('loan.index')}}">Réservations</a>
+                            <a class="nav-link" href="{{ route('loan.index')}}">Emprunts</a>
                         </li>
 
                         <!-- Search bar -->
