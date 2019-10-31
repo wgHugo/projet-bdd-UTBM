@@ -14,18 +14,18 @@
         </div>
         <br />
         @endif
-        <form method="post" action="{{ route('category.update', $category->id) }}">
+        <form method="post" action="{{ route('product.update', $product->id) }}">
             @method('PATCH')
             @csrf
             <div class="form-group">
                 <label for="name">Nom:</label>
-                <input type="text" class="form-control" name="name" value={{ $category->name }} />
+                <input type="text" class="form-control" name="name" value={{ $errors->name }} />
             </div>
 
             <div class="form-group">
                 <label for="type">Type:</label>
                 <select class="form-control" name="type">
-                    @if ($category->type == 0)
+                    @if ($errors->type == 0)
                         <option selected value="0" >Type de media</option>
                         <option value="1">Catégorie</option>
                     @else

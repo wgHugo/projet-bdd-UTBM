@@ -17,9 +17,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <td>Utilisateur</td>
-                <td>Produit</td>
-                <td>Catégorie</td>
+                <td>Nb d'utilisateurs</td>
+                <td>Nb de produits</td>
+                <td>Nb de catégories</td>
             </tr>
             </thead>
 
