@@ -11,18 +11,26 @@
 |
 */
 
-Route::get('user/profil', 'UserController@profil')->name('user.profil');
-Route::resource('user', 'UserController');
+Route::get('user/profil', 'UserController@profil')
+    ->name('user.profil');
+Route::resource('user', 'UserController')
+    ->middleware('admin');
 
-Route::get('loan/rendre{id}', 'LoanController@rendre')->name('loan.rendre');
+Route::get('loan/rendre{id}', 'LoanController@rendre')
+    ->name('loan.rendre')
+    ->middleware('admin');
 Route::resource('loan', 'LoanController');
 
-Route::get('product/card{id}', 'ProductController@card')->name('product.card');
-Route::post('product/search', 'ProductController@search')->name('product.search');
+Route::get('product/card{id}', 'ProductController@card')
+    ->name('product.card');
+Route::post('product/search', 'ProductController@search')
+    ->name('product.search');
 Route::resource('product', 'ProductController');
 
-Route::resource('category', 'CategoryController');
-Route::resource('statistic', 'StatisticController');
+Route::resource('category', 'CategoryController')
+    ->middleware('admin');
+Route::resource('statistic', 'StatisticController')
+    ->middleware('admin');
 
 Auth::routes();
 
