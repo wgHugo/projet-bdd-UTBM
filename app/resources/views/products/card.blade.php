@@ -23,7 +23,7 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <img class="img-circle"
+        <img class="img-thumbnail"
              src="{{$product->url_img}}"
              alt="User Pic">
     </div>
@@ -53,5 +53,4 @@
     </div>
 </div>
 
-</div>
 @endsection

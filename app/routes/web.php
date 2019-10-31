@@ -18,6 +18,7 @@ Route::get('loan/rendre{id}', 'LoanController@rendre')->name('loan.rendre');
 Route::resource('loan', 'LoanController');
 
 Route::get('product/card{id}', 'ProductController@card')->name('product.card');
+Route::post('product/search', 'ProductController@search')->name('product.search');
 Route::resource('product', 'ProductController');
 
 Route::resource('category', 'CategoryController');
@@ -27,3 +28,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
+
