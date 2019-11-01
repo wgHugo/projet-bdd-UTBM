@@ -23,14 +23,15 @@ Route::resource('loan', 'LoanController');
 
 Route::get('product/card{id}', 'ProductController@card')
     ->name('product.card');
-Route::post('product/search', 'ProductController@search')
-    ->name('product.search');
 Route::resource('product', 'ProductController');
 
 Route::resource('category', 'CategoryController')
     ->middleware('admin');
 Route::resource('statistic', 'StatisticController')
     ->middleware('admin');
+
+Route::post('search', 'SearchController@search')
+    ->name('search');
 
 Auth::routes();
 

@@ -39,7 +39,7 @@
                 @if (Auth::user()->admin)
                 <td>{{$product->id}}</td>
                 @endif
-                <td> <a href={{ route('product.card', $product->id)}}"> {{$product->name}}</a></td>
+                <td> <a href="{{ route('product.card', $product->id)}}"> {{$product->name}}</a></td>
                 <td>{{$product->author}}</td>
                 @foreach($tab[0] as $type)
                     @if($type->id==$product->type_id)

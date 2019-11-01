@@ -56,8 +56,7 @@
 
                         <!-- Search bar -->
                         <li class="nav-item">
-<!--                            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">-->
-                            <form action="{{ route('product.search')}}" method="POST" role="search">
+                            <form action="{{ route('search')}}" method="POST">
                                 {{ csrf_field() }}
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search" placeholder="Recherche produit"> <span class="input-group-btn">
