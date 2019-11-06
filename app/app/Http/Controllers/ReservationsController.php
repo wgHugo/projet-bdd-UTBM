@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
@@ -34,7 +37,22 @@ class ReservationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id'=>'required',
+            'product_id'=>'required',
+            'loan_time'=>'string',
+            'loan_date'=>'string'
+        ]);
+//        $loan_dateTime = Carbon::parse($request->get('loan_date').$request->get('loan_time'))->toDateTimeString();
+        $loan_dateTime = "2019-10-31 17:08";
+        $reservation = new Reservation([
+            'user_id' => $request->get('user_id'),
+            'product_id' => $request->get('product_id'),
+            'loan_date_' => $loan_dateTime,
+
+        ]);
+        $reservation->save();
+        return redirect('/product')->with('success', 'Réservation ajoutée!');
     }
 
     /**

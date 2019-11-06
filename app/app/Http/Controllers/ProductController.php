@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use Carbon\Carbon;
+use Carbon\Exceptions\NotAPeriodException;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -103,7 +105,10 @@ class ProductController extends Controller
     public function card($id)
     {
         $product = Product::find($id);
-        return view('products.card', compact('product'));
+        $min = Carbon::now()->toDateTimeString();
+        $max = Carbon::now()->add(7, 'days')->toDateTimeString();
+        $tab =[$product,$min,$max];
+        return view('products.card', compact('tab'));
     }
 
     /**

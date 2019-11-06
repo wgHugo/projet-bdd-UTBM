@@ -6,3 +6,5 @@ vendor/composer/
 package-lock.json
 
 vendor/
+
+.env

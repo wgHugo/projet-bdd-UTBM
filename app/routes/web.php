@@ -29,6 +29,7 @@ Route::resource('category', 'CategoryController')
     ->middleware('admin');
 Route::resource('statistic', 'StatisticController')
     ->middleware('admin');
+Route::resource('reservations', 'ReservationsController');
 
 Route::post('search', 'SearchController@search')
     ->name('search');
