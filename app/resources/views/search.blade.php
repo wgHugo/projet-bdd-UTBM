@@ -23,16 +23,21 @@
                 <div class="card-header" id="headingOne">
                     <h2>
                         <button class="btn btn-link" data-toggle="collapse" data-target="#{{$type}}">
-                            {{ ucfirst($type) }}
+                            @if($type == "products")
+                            Produits
+                            @endif
+                            @if($type == "categories")
+                            Catégories
+                            @endif
                         </button>
                     </h2>
                 </div>
 
-                <div id="{{$type}}" class="collapse show">
+                <div id="{{$type}}" class="collapse">
                     <div class="card-body">
                         @foreach($modelSearchResults as $searchResult)
                         <ul>
-                            <li><a href="{{'product.card', $searchResult->url }}">{{ $searchResult->title }}</a></li>
+                            <li><a href="{{$searchResult->url}}">{{ $searchResult->title }}</a></li>
                         </ul>
                         @endforeach
                     </div>

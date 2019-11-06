@@ -18,9 +18,9 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $searchResults = (new Search())
-            ->registerModel(Product::class, 'name', 'author', 'id')
+            ->registerModel(Product::class, 'name', 'author')
             ->registerModel(Category::class, 'name')
-            ->perform($request->input('search'));
+            ->search($request->input('search'));
         return view('search', compact('searchResults'));
     }
 }
