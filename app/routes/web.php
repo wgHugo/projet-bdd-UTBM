@@ -19,7 +19,8 @@ Route::resource('user', 'UserController')
 Route::get('loan/rendre{id}', 'LoanController@rendre')
     ->name('loan.rendre')
     ->middleware('admin');
-Route::resource('loan', 'LoanController');
+Route::resource('loan', 'LoanController')
+    ->middleware('admin');
 
 Route::get('product/card{id}', 'ProductController@card')
     ->name('product.card');

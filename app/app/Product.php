@@ -14,7 +14,7 @@ class Product extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-        $url = route('product.show', $this->id);
+        $url = route('product.card', $this->id);
         return new SearchResult(
             $this,
             $this->name,
