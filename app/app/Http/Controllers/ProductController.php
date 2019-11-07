@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Loan;
 use App\Product;
+use App\Reservation;
+use App\User;
 use Carbon\Carbon;
 use Carbon\Exceptions\NotAPeriodException;
 use Illuminate\Http\Request;
@@ -20,6 +23,23 @@ class ProductController extends Controller
         $products = Product::all();
         $categories = Category::where('type', 1)->get();
         $types = Category::where('type', 0)->get();
+        $resas = Reservation::all();
+        $emprunts = Loan::all();
+        foreach ($products as $product){
+            $product->available = true;
+            foreach ($resas as $resa){
+                if ($resa->product_id == $product->id){
+                    if (Carbon::create($resa->loan_date)->addDays(7)->isAfter(now()))
+                        $product->available = false;
+                }
+            }
+            foreach ($emprunts as $emprunt){
+                if ($emprunt->product_id == $product->id){
+                    if ($emprunt->returned_at =="")
+                        $product->available = false;
+                }
+            }
+        }
         $tab = [$types, $categories, $products];
         return view('products.index', compact('tab'));
     }
@@ -87,9 +107,23 @@ class ProductController extends Controller
     public function card($id)
     {
         $product = Product::find($id);
-        $min = Carbon::now()->toDateTimeString();
-        $max = Carbon::now()->add(7, 'days')->toDateTimeString();
-        $tab =[$product,$min,$max];
+        $users = User::all();
+        $product->available = true;
+        $resas = Reservation::all();
+        $emprunts = Loan::all();
+        foreach ($resas as $resa){
+            if ($resa->product_id == $product->id){
+                if (Carbon::create($resa->loan_date)->addDays(7)->isAfter(now()))
+                    $product->available = false;
+            }
+        }
+        foreach ($emprunts as $emprunt){
+            if ($emprunt->product_id == $product->id){
+                if ($emprunt->returned_at =="")
+                    $product->available = false;
+            }
+        }
+        $tab =[$product,$users];
         return view('products.card', compact('tab'));
     }
 

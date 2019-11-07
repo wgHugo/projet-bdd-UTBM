@@ -48,7 +48,7 @@
     <!-- Modal -->
     <div class="modal fade" id="modalResa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form class="modal-content">
+            <form class="modal-content" method="post" action="{{ route('reservations.store') }}">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Réserver cette oeuvre</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -56,18 +56,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('reservations.store') }}">
                         @csrf
                             <input type="hidden" class="form-control" name="user_id" value="{{Auth::user()->id}}"/>
                             <input type="hidden" class="form-control" name="product_id" value="{{$tab[0]->id}}"/>
-                        <div class="form-group">
-                            <label for="loan_date">Date d'emprunt:</label>
-                            <input type="date" max="{{$tab[2]}}" min="{{$tab[1]}}" class="form-control" name="loan_date"/>
-                            <input type="time" min="8:00" max="17:30" class="form-control" name="loan_time"/>
-                        </div>
-
-
-
+                        <h3>Attention, vous avez 7 jours pour récuperer votre exemplaire</h3>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -77,15 +69,46 @@
             </div>
         </div>
     </div>
-
+<!-- Modal -->
+<div class="modal fade" id="modalLoan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content" method="post" action="{{ route('loan.store') }}">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter un emprunt</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @csrf
+                <label>Nom de l'utilisateur:</label>
+                <select name="user_id">
+                    @foreach($tab[1] as $user)
+                    <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+                <input type="hidden" class="form-control" name="product_id" value="{{$tab[0]->id}}"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
 
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-body">
+                @if($tab[0]->available)
                 @if(Auth::user()->admin)
                 <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalLoan"> Ajouter un emprunt <i class="icon-envelope icon-white"></i></button>
                 @else
                 <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalResa"> Réserver <i class="icon-envelope icon-white"></i></button>
+                @endif
+                @else
+                <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalResa"disabled> Indisponible <i class="icon-envelope icon-white"></i></button>
                 @endif
             </div>
         </div>

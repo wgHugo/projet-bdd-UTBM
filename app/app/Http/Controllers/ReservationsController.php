@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Loan;
 use App\Product;
 use App\Reservation;
 use Carbon\Carbon;
@@ -40,15 +41,11 @@ class ReservationsController extends Controller
         $request->validate([
             'user_id'=>'required',
             'product_id'=>'required',
-            'loan_time'=>'string',
-            'loan_date'=>'string'
         ]);
-//        $loan_dateTime = Carbon::parse($request->get('loan_date').$request->get('loan_time'))->toDateTimeString();
-        $loan_dateTime = "2019-10-31 17:08";
         $reservation = new Reservation([
             'user_id' => $request->get('user_id'),
             'product_id' => $request->get('product_id'),
-            'loan_date_' => $loan_dateTime,
+            'loan_date' => Carbon::now()->toDateTimeString(),
 
         ]);
         $reservation->save();
@@ -64,6 +61,17 @@ class ReservationsController extends Controller
     public function show($id)
     {
         //
+    }
+    public function convert($id)
+    {
+        $resa = Reservation::find($id);
+        $loan = new Loan([
+            'user_id' => $resa->user_id,
+            'product_id' => $resa->product_id
+        ]);
+        $resa->delete();
+        $loan->save();
+        return redirect('/loan')->with('success', 'Réservation convertie!');
     }
 
     /**
@@ -97,6 +105,8 @@ class ReservationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Reservation::find($id);
+        $product->delete();
+        return redirect('/loan')->with('success', 'Réservation supprimée!');
     }
 }

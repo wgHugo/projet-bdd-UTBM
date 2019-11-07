@@ -19,8 +19,7 @@ Route::resource('user', 'UserController')
 Route::get('loan/rendre{id}', 'LoanController@rendre')
     ->name('loan.rendre')
     ->middleware('admin');
-Route::resource('loan', 'LoanController')
-    ->middleware('admin');
+Route::resource('loan', 'LoanController');
 
 Route::get('product/card{id}', 'ProductController@card')
     ->name('product.card');
@@ -29,6 +28,9 @@ Route::resource('product', 'ProductController');
 Route::resource('category', 'CategoryController')
     ->middleware('admin');
 Route::resource('statistic', 'StatisticController')
+    ->middleware('admin');
+Route::get('reservations/convert{id}', 'ReservationsController@convert')
+    ->name('reservation.convert')
     ->middleware('admin');
 Route::resource('reservations', 'ReservationsController');
 

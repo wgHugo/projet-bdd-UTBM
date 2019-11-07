@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Loan;
 use App\Product;
+use App\Reservation;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -36,7 +37,29 @@ class LoanController extends Controller
                 $loan->returned_at = $date2->format('d-m-Y');
             }
         }
-        return view('loans.index', compact('loans'));
+        $resas = Reservation::all();
+        foreach ($resas as $resa) {
+            $resa->product = Reservation::find($resa->id)->product()->value('name');
+            $resa->user = Reservation::find($resa->id)->user()->value('name');
+            $resa->expire_date = Carbon::create($resa->loan_date)->addDays(7);
+        }
+        $resas = $resas->filter(function($obj){
+                if ($obj->expire_date->isAfter(now())){
+                    return $obj;
+                }
+        });
+        $loansArchived = $loans->filter(function($obj){
+            if ($obj->returned_at != ''){
+                return $obj;
+            }
+        });
+        $loans = $loans->filter(function($obj){
+            if ($obj->returned_at == ''){
+                return $obj;
+            }
+    });
+        $tab = [$loans,$resas,$loansArchived];
+        return view('loans.index', compact('tab'));
     }
 
     /**
