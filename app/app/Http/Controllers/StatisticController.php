@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Loan;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,11 +17,12 @@ class StatisticController extends Controller
      */
     public function index()
     {
-        $data['utilisateur'] = [User::all()->count()];
-        $data['produit'] = [Product::all()->count()];
-        $data['categorie'] = [Category::all()->count()];
 
-        return view('statistics.index', $data);
+        $tab= [User::withCount('loans')->orderBy('loans_count', 'DESC')->paginate(10),Product::withCount('loans')->orderBy('loans_count', 'DESC')->paginate(10)];
+
+//        $data['topProductRate'] = [Product::withCount('rates')->orderBy('rates_count')->paginate(10)];
+
+        return view('statistics.index', compact('tab'));
     }
 
     /**

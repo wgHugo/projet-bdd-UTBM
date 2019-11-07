@@ -160,6 +160,6 @@ class LoanController extends Controller
         $loan = Loan::find($id);
         $loan->returned_at = Carbon::now();
         $loan->save();
-        return redirect('/loan')->with('success', 'Oeuvre rendue!');
+        return redirect('/loan')->with('success', 'Oeuvre récupérée!');
     }
 }
