@@ -21,11 +21,6 @@
             @endif
             <div class="panel-body">
                 <div class="row-fluid">
-                    <div class="span3">
-                        <img class="img-circle"
-                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
-                             alt="User Pic">
-                    </div>
                     <div class="span6">
                         <strong>{{$user->name}}</strong><br>
                         <table class="table table-condensed table-responsive table-user-information">
@@ -35,12 +30,12 @@
                                 <td>{{$user->email}}</td>
                             </tr>
                             <tr>
-                                <td>Nomber of loans :</td>
-                                <td>12</td>
+                                <td>Nombre de reservations</td>
+                                <td>{{$user->nbResa}}</td>
                             </tr>
                             <tr>
-                                <td>Registered since:</td>
-                                <td>11/12/2013</td>
+                                <td>Membre depuis:</td>
+                                <td>{{$user->created_at}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -48,7 +43,7 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <button class="btn  btn-primary" type="button" data-toggle="tooltip"> Modifier Information <i class="icon-envelope icon-white"></i></button>
+                <button class="btn  btn-primary" type="button" data-toggle="tooltip"> Modifier ses informations <i class="icon-envelope icon-white"></i></button>
             </div>
         </div>
     </div>

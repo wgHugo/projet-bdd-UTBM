@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Loan;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +74,7 @@ class UserController extends Controller
     public function profil()
     {
         $user = Auth::user();
+        $user->nbResa = Loan::where('user_id', $user->id)->count();
         return view('users.profil', compact('user'));
     }
 

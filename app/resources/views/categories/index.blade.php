@@ -29,7 +29,11 @@
         <tr>
             <td>{{$category->id}}</td>
             <td>{{$category->name}}</td>
-            <td>{{$category->type}}</td>
+            @if($category->type == 0)
+            <td>Type de média</td>
+            @else
+            <td>Catégorie</td>
+            @endif
             <td>
                 <a href="{{ route('category.edit', $category->id)}}" class="btn btn-primary">Modifier</a>
             </td>

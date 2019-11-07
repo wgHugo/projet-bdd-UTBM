@@ -107,6 +107,7 @@ class ProductController extends Controller
     public function card($id)
     {
         $product = Product::find($id);
+        $product->category = Category::find($product->category_id);
         $users = User::all();
         $product->available = true;
         $resas = Reservation::all();

@@ -19,7 +19,7 @@
             <thead>
             <tr>
                 <td>#</td>
-                <td>Titre de l'oeuvre</td>
+                <td>Utilisateur</td>
                 <td>Nb d'emprunts</td>
             </tr>
             </thead>
@@ -39,7 +39,7 @@
             <thead>
             <tr>
                 <td>#</td>
-                <td>Nom</td>
+                <td>Titre de l'oeuvre</td>
                 <td>Nb d'emprunts</td>
             </tr>
             </thead>

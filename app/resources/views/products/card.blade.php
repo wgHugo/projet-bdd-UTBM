@@ -31,8 +31,7 @@
     <div class="col-md-8">
         <div class="span6">
             <p>De : <strong>{{$tab[0]->author}}</strong></p>
-            <p>Date de sortie : </p>
-            <p>Genre : {{$tab[0]->category_id}}</p>
+            <p>Genre : {{$tab[0]->category->name}}</p>
             <p>
                 <span style="color: orange;" class="fa fa-star"></span>
                 <span style="color: orange;" class="fa fa-star"></span>
