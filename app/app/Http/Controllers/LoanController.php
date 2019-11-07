@@ -107,7 +107,7 @@ class LoanController extends Controller
             'product_id' => $request->get('product_id')
         ]);
         $loan->save();
-        return redirect('/loan')->with('success', 'Réservation ajoutée!');
+        return redirect('/loan')->with('success', 'Emprunt ajouté!');
 
     }
 

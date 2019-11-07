@@ -25,4 +25,10 @@ class Product extends Model implements Searchable
     {
         return $this->hasMany('App\Loan');
     }
+    public function type(){
+        return $this->belongsTo('App\Category');
+    }
+    public function category(){
+        return $this->belongsTo('App\Category');
+    }
 }

@@ -27,6 +27,15 @@ Route::resource('product', 'ProductController');
 
 Route::resource('category', 'CategoryController')
     ->middleware('admin');
+Route::get('statistic/generatePDFUsers', 'StatisticController@generatePDFUsers')
+    ->name('statistic.generatePDFUsers')
+    ->middleware('admin');
+Route::get('statistic/generatePDFProducts', 'StatisticController@generatePDFProducts')
+    ->name('statistic.generatePDFProducts')
+    ->middleware('admin');
+Route::get('statistic/generatePDFInOut', 'StatisticController@generatePDFInOut')
+    ->name('statistic.generatePDFInOut')
+    ->middleware('admin');
 Route::resource('statistic', 'StatisticController')
     ->middleware('admin');
 Route::get('reservations/convert{id}', 'ReservationsController@convert')

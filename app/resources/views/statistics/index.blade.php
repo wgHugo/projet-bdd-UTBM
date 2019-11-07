@@ -18,14 +18,16 @@
         <table class="table table-striped">
             <thead>
             <tr>
+                <td>#</td>
                 <td>Titre de l'oeuvre</td>
                 <td>Nb d'emprunts</td>
             </tr>
             </thead>
 
             <tbody>
-            @foreach($tab[0] as $product)
+            @foreach($tab[0] as $i=>$product)
             <tr>
+                <td>{{$i+1}}</td>
                 <td> {{$product->name}}</td>
                 <td> {{$product->loans_count}}</td>
             </tr>
@@ -36,23 +38,25 @@
         <table class="table table-striped">
             <thead>
             <tr>
+                <td>#</td>
                 <td>Nom</td>
                 <td>Nb d'emprunts</td>
             </tr>
             </thead>
 
             <tbody>
-            @foreach($tab[1] as $user)
+            @foreach($tab[1] as $i=>$user)
             <tr>
+                <td>{{$i+1}}</td>
                 <td> {{$user->name}}</td>
                 <td> {{$user->loans_count}}</td>
             </tr>
             @endforeach
             </tbody>
         </table>
-        <button class="btn btn-lg btn-secondary">Générer la liste des oeuvres</button>
-        <button class="btn btn-lg btn-secondary">Générer la liste des utilisateurs</button>
-        <button class="btn btn-lg btn-secondary">Générer le rapport Entrées/Sorties</button>
+        <a href="{{ route('statistic.generatePDFProducts')}}" class="btn btn-secondary">Générer la liste des oeuvres</a>
+        <a href="{{ route('statistic.generatePDFUsers')}}" class="btn btn-secondary">Générer la liste des utilisateurs</a>
+        <a href="{{ route('statistic.generatePDFInOut')}}" class="btn btn-secondary">Générer le rapport Entrées/Sorties</a>
         <div>
         </div>
         @endsection
