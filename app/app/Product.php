@@ -12,6 +12,11 @@ class Product extends Model implements Searchable
     protected $table = 'products';
     protected $fillable = ['name', 'author', 'description', 'url_img', 'type_id', 'category_id'];
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('product_id');
+    }
+
     public function getSearchResult(): SearchResult
     {
         $url = route('product.card', $this->id);
@@ -31,4 +36,8 @@ class Product extends Model implements Searchable
     public function category(){
         return $this->belongsTo('App\Category');
     }
+    public function comment(){
+        return $this->hasMany('App\Comment');
+    }
+
 }
