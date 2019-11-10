@@ -111,6 +111,7 @@ class ProductController extends Controller
         $product->category = Category::find($product->category_id);
         $users = User::all();
         $comments = Product::find(1)->comment;
+        $averageRating = $comments->avg('mark');
         $product->available = true;
         $resas = Reservation::all();
         $emprunts = Loan::all();
@@ -126,7 +127,7 @@ class ProductController extends Controller
                     $product->available = false;
             }
         }
-        $tab =[$product,$users, $comments];
+        $tab =[$product,$users, $comments, $averageRating];
         return view('products.card', compact('tab'));
     }
 

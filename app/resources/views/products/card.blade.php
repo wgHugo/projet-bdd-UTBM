@@ -33,12 +33,10 @@
             <p>De : <strong>{{$tab[0]->author}}</strong></p>
             <p>Genre : {{$tab[0]->category->name}}</p>
             <p>
-                <span style="color: orange;" class="fa fa-star"></span>
-                <span style="color: orange;" class="fa fa-star"></span>
-                <span style="color: orange;" class="fa fa-star"></span>
-                <span style="color: orange;" class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <big> 4/5 </big>
+                @for ($i = 0; $i < 5; ++$i)
+                    <i class="fa fa-star{{ $tab[3] <=$i?'-o':'' }}" aria-hidden="true"></i>
+                @endfor
+                <big> {{$tab[3]}}/5 </big>
             </p>
             <p>Description : {{$tab[0]->description}}</p>
         </div>
@@ -177,6 +175,7 @@
 
 </div>
 @endsection
+
 
 <script type="text/javascript">
 
