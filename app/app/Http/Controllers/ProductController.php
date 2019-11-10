@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Loan;
 use App\Product;
 use App\Reservation;
@@ -108,6 +109,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $users = User::all();
+        $comments = Product::find(1)->comment;
         $product->available = true;
         $resas = Reservation::all();
         $emprunts = Loan::all();
@@ -123,7 +125,7 @@ class ProductController extends Controller
                     $product->available = false;
             }
         }
-        $tab =[$product,$users];
+        $tab =[$product,$users, $comments];
         return view('products.card', compact('tab'));
     }
 

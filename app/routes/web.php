@@ -27,6 +27,7 @@ Route::resource('product', 'ProductController');
 
 Route::resource('category', 'CategoryController')
     ->middleware('admin');
+
 Route::get('statistic/generatePDFUsers', 'StatisticController@generatePDFUsers')
     ->name('statistic.generatePDFUsers')
     ->middleware('admin');
@@ -38,6 +39,7 @@ Route::get('statistic/generatePDFInOut', 'StatisticController@generatePDFInOut')
     ->middleware('admin');
 Route::resource('statistic', 'StatisticController')
     ->middleware('admin');
+
 Route::get('reservations/convert{id}', 'ReservationsController@convert')
     ->name('reservation.convert')
     ->middleware('admin');
@@ -45,6 +47,15 @@ Route::resource('reservations', 'ReservationsController');
 
 Route::post('search', 'SearchController@search')
     ->name('search');
+
+Route::get('comments', 'CommentController@index')
+    ->name('comments');
+Route::get('comment/show{id}', 'CommentController@show')
+    ->name('comment.show');
+Route::post('comment/store', 'CommentController@store')
+    ->name('comment.add');
+
+
 
 Auth::routes();
 
