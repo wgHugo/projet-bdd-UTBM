@@ -5,6 +5,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="col-sm-12 offset-sm-0">
+    @if(session()->get('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+    @endif
+    @if(session()->get('error'))
+    <div class="alert alert-danger">
+        {{ session()->get('error') }}
+    </div>
+    @endif
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h1 align="center" class="panel-title">{{$tab[0]->name}}</h1>
@@ -39,6 +49,21 @@
                 <big> {{$tab[3]}}/5 </big>
             </p>
             <p>Description : {{$tab[0]->description}}</p>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @if($tab[0]->available)
+                        @if(Auth::user()->admin)
+                        <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalLoan"> Ajouter un emprunt <i class="icon-envelope icon-white"></i></button>
+                        @else
+                        <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalResa"> Réserver <i class="icon-envelope icon-white"></i></button>
+                        @endif
+                        @else
+                        <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalResa"disabled> Indisponible <i class="icon-envelope icon-white"></i></button>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -95,21 +120,7 @@
     </div>
 </div>
 
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                @if($tab[0]->available)
-                @if(Auth::user()->admin)
-                <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalLoan"> Ajouter un emprunt <i class="icon-envelope icon-white"></i></button>
-                @else
-                <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalResa"> Réserver <i class="icon-envelope icon-white"></i></button>
-                @endif
-                @else
-                <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalResa"disabled> Indisponible <i class="icon-envelope icon-white"></i></button>
-                @endif
-            </div>
-        </div>
-    </div>
+
 
 
 <!-- Modal Comment -->
@@ -162,11 +173,13 @@
 
     <div>
         <hr />
-        <h4>Espace Commentaire : </h4>
+        @if(sizeof($tab[2])>0)
+        <h4>Commentaires: </h4>
 
         @include('comments.commentsDisplay', ['comments' => $tab[2]])
 
         <hr />
+        @endif
         <button class="btn  btn-primary" type="button" data-toggle="modal" data-target="#modalComment"> Ajouter un commentaire <i class="icon-envelope icon-white"></i></button>
     </div>
 

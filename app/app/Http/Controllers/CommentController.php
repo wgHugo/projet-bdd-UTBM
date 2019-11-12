@@ -61,7 +61,7 @@ class CommentController extends Controller
         ]);
 
         $comment->save();
-        return redirect('/product')->with('success', 'Commentaire ajouté!');
+        return redirect('/product/card'.$request->get('product_id'))->with('success', 'Commentaire ajouté!');
     }
 
     /**

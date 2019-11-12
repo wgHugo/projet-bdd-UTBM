@@ -110,7 +110,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->category = Category::find($product->category_id);
         $users = User::all();
-        $comments = Product::find(1)->comment;
+        $comments = Comment::where('product_id',$product->id)->get();
         $averageRating = $comments->avg('mark');
         $product->available = true;
         $resas = Reservation::all();
