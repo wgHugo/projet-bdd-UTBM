@@ -19,6 +19,14 @@ class StatisticController extends Controller
      */
     public function index()
     {
+        // permet d'obtenir toutes les notes de chaque produits
+        $products = Product::all();
+        foreach ($products as $product){
+            $comments = Product::find($product->id)->comment;
+            $averageRating = $comments->avg('mark');
+        }
+
+
         $tab= [User::withCount('loans')->orderBy('loans_count', 'DESC')->paginate(10),
             Product::withCount('loans')->orderBy('loans_count', 'DESC')->paginate(10),
             Product::withCount('comments')->orderBy('comments_count', 'DESC')->paginate(10)];

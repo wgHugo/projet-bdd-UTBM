@@ -25,11 +25,11 @@
             </thead>
 
             <tbody>
-            @foreach($tab[0] as $i=>$product)
+            @foreach($tab[0] as $i=>$user)
             <tr>
                 <td>{{$i+1}}</td>
-                <td> {{$product->name}}</td>
-                <td> {{$product->loans_count}}</td>
+                <td> {{$user->name}}</td>
+                <td> {{$user->loans_count}}</td>
             </tr>
             @endforeach
             </tbody>
@@ -45,11 +45,11 @@
             </thead>
 
             <tbody>
-            @foreach($tab[1] as $i=>$user)
+            @foreach($tab[1] as $i=>$product)
             <tr>
                 <td>{{$i+1}}</td>
-                <td> {{$user->name}}</td>
-                <td> {{$user->loans_count}}</td>
+                <td> {{$product->name}}</td>
+                <td> {{$product->loans_count}}</td>
             </tr>
             @endforeach
             </tbody>

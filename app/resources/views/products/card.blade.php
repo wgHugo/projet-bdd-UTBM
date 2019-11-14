@@ -169,6 +169,54 @@
             </div>
         </form>
     </div>
+
+
+<!-- Modal Comment -->
+<div class="modal fade" id="modalComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content" method="post" action="{{ route('comment.add') }}">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter un commentaire</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @csrf
+                <div class="form-group">
+                    <label>Titre :</label>
+                    <input type="text" placeholder="Titre" name = "title">
+                </div>
+                <div class="form-group">
+                    <label>Note :</label>
+
+                    <input class="star" value="5" id="star-5" type="radio" onclick="changeNote(this.id)"/>
+                    <label class="star" for="star-5"></label>
+                    <input class="star" value="4" id="star-4" type="radio" onclick="changeNote(this.id)"/>
+                    <label class="star" for="star-4"></label>
+                    <input class="star" value="3" id="star-3" type="radio" onclick="changeNote(this.id)"/>
+                    <label class="star" for="star-3"></label>
+                    <input class="star" value="2" id="star-2" type="radio" onclick="changeNote(this.id)"/>
+                    <label class="star" for="star-2"></label>
+                    <input class="star" value="1" id="star-1" type="radio" onclick="changeNote(this.id)"/>
+                    <label class="star" for="star-1"></label>
+
+                    <input hidden value="0" id="note" name="mark"/>
+
+
+                </div>
+                <div class="form-group">
+                    <label>Commentaire :</label>
+                    <textarea class="form-control" placeholder="Contenu" name="content"></textarea>
+                </div>
+                <input type="hidden" name="product_id" value="{{ $tab[0]->id}}" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </form>
+    </div>
 </div>
 
     <div>

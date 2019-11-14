@@ -84,7 +84,7 @@ class ProductController extends Controller
             'category_id' => $request->get('category_id')
         ]);
         $product->save();
-        return redirect('/product')->with('success', 'Produit ajouté!');
+        return redirect('/product')->with('success', 'Produit ajouté !');
 
     }
 
@@ -139,8 +139,13 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::where('type', 1)->get();
+        $types = Category::where('type', 0)->get();
         $product= Product::find($id);
-        return view('products.edit', compact('product'));
+        $tab = [$types, $categories, $product];
+        return view('products.edit', compact('tab'));
+
+//        return view('products.edit', compact('product'));
     }
 
     /**
@@ -155,6 +160,8 @@ class ProductController extends Controller
         $request->validate([
             'name'=>'required',
             'author'=>'required',
+            'description'=>'required',
+            'url_img'=>'required',
             'type_id'=>'required',
             'category_id'=>'required'
         ]);
@@ -162,6 +169,8 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->name =  $request->get('name');
         $product->author = $request->get('author');
+        $product->description = $request->get('description');
+        $product->url_img = $request->get('url_img');
         $product->type_id = $request->get('type_id');
         $product->category_id = $request->get('category_id');
         $product->save();
