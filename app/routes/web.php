@@ -30,6 +30,10 @@ Route::get('product/card{id}', 'ProductController@card')
 Route::resource('product', 'ProductController');
 
 // Route pour CATEGORY
+Route::get('category/create', 'CategoryController@create')
+    ->name('category.create');
+Route::get('category/{id}', 'CategoryController@card')
+    ->name('category.card');
 Route::resource('category', 'CategoryController')
     ->middleware('admin');
 
