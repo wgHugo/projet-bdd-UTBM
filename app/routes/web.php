@@ -13,9 +13,11 @@
 
 Route::get('user/profil', 'UserController@profil')
     ->name('user.profil');
-Route::resource('user', 'UserController')
-    ->middleware('admin');
-
+Route::resource('user', 'UserController');
+Route::get('user', 'UserController@index')
+    ->name('user.index')->middleware('admin');
+Route::get('user/create', 'UserController@create')
+    ->name('user.create')->middleware('admin');;
 Route::get('loan/rendre{id}', 'LoanController@rendre')
     ->name('loan.rendre')
     ->middleware('admin');

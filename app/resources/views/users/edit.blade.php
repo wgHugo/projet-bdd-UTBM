@@ -26,6 +26,7 @@
                 <label for="email">Email:</label>
                 <input type="text" class="form-control" name="email" value={{ $user->email }} />
             </div>
+            @if (Auth::user()->admin)
             <div class="form-group">
                 <label for="name">Admin:</label>
                 @if ($user->admin)
@@ -34,6 +35,7 @@
                     <input type="checkbox" class="form-control" name="admin" value="1"/>
                 @endif
             </div>
+            @endif
             <button type="submit" class="btn btn-primary">Modifier</button>
         </form>
     </div>

@@ -19,12 +19,10 @@ class StatisticController extends Controller
      */
     public function index()
     {
-
         $tab= [User::withCount('loans')->orderBy('loans_count', 'DESC')->paginate(10),
-            Product::withCount('loans')->orderBy('loans_count', 'DESC')->paginate(10)];
-
-//        $data['topProductRate'] = [Product::withCount('rates')->orderBy('rates_count')->paginate(10)];
-
+            Product::withCount('loans')->orderBy('loans_count', 'DESC')->paginate(10),
+            Product::withCount('comments')->orderBy('comments_count', 'DESC')->paginate(10)];
+//
         return view('statistics.index', compact('tab'));
     }
     public function generatePDFProducts()

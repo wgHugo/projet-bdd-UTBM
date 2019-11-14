@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <button class="btn  btn-primary" type="button" data-toggle="tooltip"> Modifier ses informations <i class="icon-envelope icon-white"></i></button>
+                <a href="{{ route('user.edit', Auth::user()->id)}}" class="btn  btn-primary" type="button" data-toggle="tooltip">Modifier ses informations <i class="icon-envelope icon-white"></i></a>
             </div>
         </div>
     </div>

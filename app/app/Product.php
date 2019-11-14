@@ -14,7 +14,7 @@ class Product extends Model implements Searchable
 
     public function comments()
     {
-        return $this->hasMany(Comment::class)->whereNull('product_id');
+        return $this->hasMany('App\Comment');
     }
 
     public function getSearchResult(): SearchResult

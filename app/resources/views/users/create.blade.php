@@ -25,8 +25,10 @@
               <label for="email">Email:</label>
               <input type="text" class="form-control" name="email"/>
           </div>
-
-              <input type="text" hidden class="form-control" name="password" value="1234"/>
+          <div class="form-group">
+              <label for="email">Mot de passe:</label>
+              <input type="password" class="form-control" name="password"/>
+          </div>
           <button type="submit" class="btn btn-primary">Ajouter un utilisateur</button>
       </form>
   </div>
