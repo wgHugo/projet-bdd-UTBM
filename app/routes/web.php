@@ -11,20 +11,24 @@
 |
 */
 
+// Route pour USER
 Route::get('user/profil', 'UserController@profil')
     ->name('user.profil');
 Route::resource('user', 'UserController')
     ->middleware('admin');
 
+// Route pour LOAN
 Route::get('loan/rendre{id}', 'LoanController@rendre')
     ->name('loan.rendre')
     ->middleware('admin');
 Route::resource('loan', 'LoanController');
 
+// Route pour PRODUCT
 Route::get('product/card{id}', 'ProductController@card')
     ->name('product.card');
 Route::resource('product', 'ProductController');
 
+// Route pour CATEGORY
 Route::resource('category', 'CategoryController')
     ->middleware('admin');
 

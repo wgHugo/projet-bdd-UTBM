@@ -26,8 +26,8 @@ class Product extends Model implements Searchable
             $url
         );
     }
-    public function loans()
-    {
+
+    public function loans(){
         return $this->hasMany('App\Loan');
     }
     public function type(){

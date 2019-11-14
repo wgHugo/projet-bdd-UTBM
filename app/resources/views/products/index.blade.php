@@ -15,7 +15,9 @@
         @endif
         <h1 class="display-3">Produits</h1>
         @if (Auth::user()->admin)
-        <a href="{{ route('product.create')}}" class="btn btn-primary">Créer</a>
+        <a href="{{ route('product.create')}}" class="btn btn-primary">
+            <span class="fa fa-plus" aria-hidden="true"></span> Produit
+        </a>
         @endif
         <table class="table table-striped">
         <thead>
@@ -28,7 +30,7 @@
               <td>Type</td>
               <td>Catégorie</td>
                 @if (Auth::user()->admin)
-                <td colspan = 2>Actions</td>
+                <td>Actions</td>
                 @endif
                 <td colspan = 2>Status</td>
             </tr>
@@ -53,13 +55,15 @@
                 @endforeach
                 @if (Auth::user()->admin)
                 <td>
-                    <a href="{{ route('product.edit', $product->id)}}" class="btn btn-primary">Modifier</a>
-                </td>
-                <td>
-                    <form action="{{ route('product.destroy', $product->id)}}" method="post">
-                      @csrf
-                      @method('DELETE')
-                      <button class="btn btn-danger" type="submit">Supprimer</button>
+                    <a title="Modifier" href="{{ route('product.edit', $product->id)}}" class="btn btn-primary pull-left">
+                        <span class="fa fa-wrench fa-lg" aria-hidden="true"></span>
+                    </a>
+                    <form action="{{ route('product.destroy', $product->id)}}" method="post" class="pull-left">
+                        @csrf
+                        @method('DELETE')
+                        <button title="Supprimer" class="btn btn-danger" type="submit">
+                            <span class="fa fa-trash-o fa-lg" aria-hidden="true"></span>
+                        </button>
                     </form>
                 </td>
                 @endif
