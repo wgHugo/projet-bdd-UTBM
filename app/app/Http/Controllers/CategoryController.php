@@ -119,7 +119,7 @@ class CategoryController extends Controller
         $category->type = $request->get('type');
         $category->save();
 
-        return redirect('/category')->with('success', 'Catégorie modifiée!');
+        return redirect('/category')->with('success', 'Catégorie modifiée en cascade!');
     }
 
     /**
@@ -132,6 +132,6 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
-        return redirect('/category')->with('success', 'Catégorie supprimée!');
+        return redirect('/category')->with('success', 'Catégorie supprimée en cascade!');
     }
 }

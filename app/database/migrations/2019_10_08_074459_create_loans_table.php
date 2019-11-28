@@ -20,14 +20,14 @@ class CreateLoansTable extends Migration
             $table->foreign('user_id')
 				  ->references('id')
 				  ->on('users')
-				  ->onDelete('restrict')
-				  ->onUpdate('restrict');
+				  ->onDelete('cascade')
+				  ->onUpdate('cascade');
 			$table->integer('product_id')->unsigned();
             $table->foreign('product_id')
 				  ->references('id')
 				  ->on('products')
-				  ->onDelete('restrict')
-				  ->onUpdate('restrict');
+				  ->onDelete('cascade')
+				  ->onUpdate('cascade');
 		    $table->timestamp('returned_at')->nullable();
         });
     }

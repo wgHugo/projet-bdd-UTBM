@@ -24,14 +24,14 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')
 				  ->references('id')
 				  ->on('categories')
-				  ->onDelete('restrict')
-				  ->onUpdate('restrict');
+				  ->onDelete('cascade')
+				  ->onUpdate('cascade');
 			$table->integer('type_id')->unsigned();
             $table->foreign('type_id')
 				  ->references('id')
 				  ->on('categories')
-				  ->onDelete('restrict')
-				  ->onUpdate('restrict');
+				  ->onDelete('cascade')
+				  ->onUpdate('cascade');
 		});
     }
 

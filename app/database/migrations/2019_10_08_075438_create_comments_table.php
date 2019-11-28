@@ -24,15 +24,15 @@ class CreateCommentsTable extends Migration
 $table->foreign('product_id')
 				  ->references('id')
 				  ->on('products')
-				  ->onDelete('restrict')
-				  ->onUpdate('restrict');
+				  ->onDelete('cascade')
+				  ->onUpdate('cascade');
 				  			$table->integer('user_id')->unsigned();
 
 $table->foreign('user_id')
 				  ->references('id')
 				  ->on('users')
-				  ->onDelete('restrict')
-				  ->onUpdate('restrict');
+				  ->onDelete('cascade')
+				  ->onUpdate('cascade');
 	      });
     }
 
